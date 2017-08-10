@@ -12,15 +12,25 @@ class App extends Component {
     }
   }
 
+  chStartingSeason = (action) => {
+    this.setState({roster: {...this.state.roster, startingSeason: parseInt(action.target.value, 10)}})
+  }
 
   render() {
     return (
       <div className='app-container'>
         <div className='App'>
+
+          <label>Starting Season</label>
+          <input
+            type='number'
+            value={this.state.roster.startingSeason}
+            onChange={this.chStartingSeason} />
+
           <textarea
             value={ JSON.stringify(this.state.roster, null, 2) }
             className='export-textarea'
-            readonly
+            readOnly
           />
         </div>
       </div>
