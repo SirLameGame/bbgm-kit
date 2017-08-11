@@ -19,7 +19,6 @@ var team = {
 }
 
 var teams = [
-  team
 ]
 
 var player = {
@@ -73,7 +72,6 @@ var player = {
 }
 
 var players = [
-  player
 ]
 
 export let rosterRoot = {
