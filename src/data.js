@@ -1,5 +1,5 @@
 
-var gameAttributes = [
+export const gameAttributes = [
   {key: 'luxuryPayroll', value: 0 },
   {key: 'luxuryTax', value: 0 },
   {key: 'maxContract', value: 0 },
@@ -7,21 +7,22 @@ var gameAttributes = [
   {key: 'salaryCap', value: 0 },
 ]
 
-var team = {
+export const team = {
   tid: 0,
   cid: 0,
   did: 0,
+  name: '',
   region: '',
   abbrev: '',
   pop: 0,
-  stragegy: '',
+  strategy: '',
   imgURL: ''
 }
 
-var teams = [
+const teams = [
 ]
 
-var player = {
+const player = {
   tid: 0,
   name: '',
   pos: '',
@@ -71,10 +72,10 @@ var player = {
   }
 }
 
-var players = [
+const players = [
 ]
 
-export let rosterRoot = {
+export const rosterRoot = {
   startingSeason: 2017,
   gameAttributes : gameAttributes,
   teams: teams,
