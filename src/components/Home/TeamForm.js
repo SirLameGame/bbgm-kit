@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { FormGroup, FormControl, ControlLabel, Col, Button } from 'react-bootstrap'
-import './TeamForm.css'
+import './assets/styles/TeamForm.css'
 
 export default class TeamForm extends Component {
   constructor(props) {

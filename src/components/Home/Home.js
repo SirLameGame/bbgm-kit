@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { rosterRoot } from './data'
 import GameAttributes from './GameAttributes'
-import { team } from './data'
+import { team, rosterRoot } from '../../data'
 import Nav from './Nav'
 import Teams from './Teams'
-import './App.css';
+import './assets/styles/App.css';
 
-class App extends Component {
+class Home extends Component {
 
   constructor() {
     super()
@@ -78,4 +77,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;
