@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import GameAttributes from './GameAttributes'
-import { team, rosterRoot } from '../../data'
-import Nav from './Nav'
 import Teams from './Teams'
+import Nav from './Nav'
 import './assets/styles/App.css';
 
 class Home extends Component {
@@ -11,35 +10,10 @@ class Home extends Component {
     super()
 
     this.state = {
-      roster: rosterRoot,
       tab: 'gameAttributes'
     }
   }
 
-  chStartingSeason = (action) => {
-    this.setState({roster: {...this.state.roster, startingSeason: parseInt(action.target.value, 10)}})
-  }
-
-  chGameAttribute = (action) => {
-    let state = this.state.roster
-
-    state.gameAttributes.forEach((obj, idx) => {
-      if (obj.key === action.target.className.split(' ')[0]) {
-        state.gameAttributes[idx].value = parseInt(action.target.value, 10)
-        this.setState(state)
-      }
-    })
-  }
-
-  newTeam = (action) => {
-    action.preventDefault()
-    let state = this.state
-    let newTeam = team
-
-    state.roster.teams.push(newTeam)
-
-    this.setState(state)
-  }
 
   navSelect = (e) => {
     if (e !== 'download') {
@@ -56,9 +30,7 @@ class Home extends Component {
             <GameAttributes />
           }
           {this.state.tab === 'teams' &&
-            <Teams
-              teams={this.state.roster.teams}
-              newTeam={this.newTeam}/>
+            <Teams />
           }
           {this.state.tab === 'json' &&
             <textarea
