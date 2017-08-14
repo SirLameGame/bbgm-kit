@@ -53,11 +53,7 @@ class Home extends Component {
         <div className='App'>
           <Nav navSelect={this.navSelect} roster={this.state.roster}/>
           {this.state.tab === 'gameAttributes' &&
-            <GameAttributes
-              chStartingSeason={this.chStartingSeason}
-              chGameAttribute={this.chGameAttribute}
-              gameAttributes={this.state.roster.gameAttributes}
-              startingSeason={this.state.roster.startingSeason}/>
+            <GameAttributes />
           }
           {this.state.tab === 'teams' &&
             <Teams

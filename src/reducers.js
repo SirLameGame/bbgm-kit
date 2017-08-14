@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
+import gameAttributes from './components/Home/GameAttributes/reducers/GameAttributesReducer'
+
 const appReducer = combineReducers({
-    // here will go real reducers
+  gameAttributes
 });
 
 export default appReducer;
