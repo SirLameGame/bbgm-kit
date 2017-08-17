@@ -14,6 +14,14 @@ class TeamForm extends Component {
     }
   }
 
+  updateTeam = (e) => {
+    e.persist()
+    console.log(e)
+    let inputKey = e.target.className.split(' ')[0].split('-')[1]
+
+    this.props.updateTeam(this.props.team.uuid, inputKey, e.target.value)
+  }
+
   render() {
 
     let {
@@ -45,6 +53,7 @@ class TeamForm extends Component {
               <Col xs={10}>
                 <FormControl
                   value={tid}
+                  onChange={this.updateTeam}
                   type='text'
                   className='team-tid-edit'/>
               </Col>
@@ -54,6 +63,7 @@ class TeamForm extends Component {
               <Col xs={10}>
                 <FormControl
                   value={name}
+                  onChange={this.updateTeam}
                   type='text'
                   className='team-name-edit'/>
               </Col>
@@ -63,6 +73,7 @@ class TeamForm extends Component {
               <Col xs={10}>
                 <FormControl
                   value={cid}
+                  onChange={this.updateTeam}
                   type='number'
                   className='team-cid-edit'/>
               </Col>
@@ -72,6 +83,7 @@ class TeamForm extends Component {
               <Col xs={10}>
                 <FormControl
                   value={did}
+                  onChange={this.updateTeam}
                   type='number'
                   className='team-did-edit'/>
               </Col>
@@ -81,6 +93,7 @@ class TeamForm extends Component {
               <Col xs={10}>
                 <FormControl
                   value={pop}
+                  onChange={this.updateTeam}
                   type='number'
                   className='team-pop-edit'/>
               </Col>
@@ -102,7 +115,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  deleteTeam: teamFormActions.deleteTeam
+  deleteTeam: teamFormActions.deleteTeam,
+  updateTeam: teamFormActions.updateTeam
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeamForm);

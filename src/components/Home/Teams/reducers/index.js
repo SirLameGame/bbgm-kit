@@ -24,6 +24,14 @@ const teamsReducer = (state = initialState, action) => {
       return state.push(action.payload.set('uuid', uuid()))
     case types.DELETE_TEAM:
       return state.filter(obj => {return obj.uuid !== action.payload})
+    case types.UPDATE_TEAM:
+      console.log(action)
+      let test =  state.map(team => {
+        if (team.get('uuid') === action.payload.teamUUID) {
+          return team.set(action.payload.key, action.payload.value)
+        } else {return team}
+      })
+      return test
     default:
       return state;
   }

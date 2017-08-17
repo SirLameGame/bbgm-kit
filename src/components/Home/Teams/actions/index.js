@@ -5,7 +5,16 @@ export const createTeam = (team: Object) => ({
   payload: team
 });
 
-export const deleteTeam = (team: Object) => ({
+export const deleteTeam = (teamUUID: String) => ({
   type: types.DELETE_TEAM,
-  payload: team
+  payload: teamUUID
+});
+
+export const updateTeam = (teamUUID: STRING, key: String, value) => ({
+  type: types.UPDATE_TEAM,
+  payload: {
+    teamUUID: teamUUID,
+    key: key,
+    value:value
+  }
 });
