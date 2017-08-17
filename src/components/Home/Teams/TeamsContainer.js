@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Teams from './Teams';
-import * as teamsActions from './actions/TeamsActions'
+import * as teamsActions from './actions'
 
 const mapStateToProps = state => ({
   teams: state.teams

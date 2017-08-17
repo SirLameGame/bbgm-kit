@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Row, Grid, Button } from 'react-bootstrap'
-import { team } from './reducers/TeamsReducers'
-import TeamForm from './TeamForm'
+import { team } from './reducers'
+import TeamForm from './TeamForm/TeamForm'
 
 const Teams = ({
   createTeam,
@@ -15,7 +15,7 @@ const Teams = ({
     <hr/>
     <Row>
       <Form horizontal>
-        {teams.map((team, idx) => <TeamForm key={idx} team={team} />) }
+        {teams.map((team, idx) => <TeamForm key={team.uuid} team={team} />) }
       </Form>
     </Row>
   </Grid>
