@@ -7,6 +7,7 @@
     "immutable": "^3.8.1",
     "material-ui": "next",
     "prop-types": "^15.5.10",
+    "random-words": "^0.0.1",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.2",
     "react-dom": "^15.6.1",

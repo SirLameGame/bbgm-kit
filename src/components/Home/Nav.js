@@ -19,6 +19,7 @@ class Nav extends Component {
         <Link to='/'>Home</Link>
         <Link to='/attributes'>Game Attributes</Link>
         <Link to='/teams'>Teams</Link>
+        <Link to='/players'>Players</Link>
         <Link to='/export'>Export</Link>
         <Link to='/download' onClick={this.download}>Download</Link>
       </div>

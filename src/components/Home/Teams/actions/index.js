@@ -18,3 +18,8 @@ export const updateTeam = (teamUUID: STRING, key: String, value) => ({
     value:value
   }
 });
+
+export const createRandoTeams = (team: Object) => ({
+  type: types.CREATE_RANDOM_TEAMS,
+  payload: team
+});

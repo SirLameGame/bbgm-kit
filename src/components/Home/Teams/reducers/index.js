@@ -24,12 +24,20 @@ const teamsReducer = (state = initialState, action) => {
     case types.DELETE_TEAM:
       return state.filter(obj => {return obj.uuid !== action.payload})
     case types.UPDATE_TEAM:
-      let test =  state.map(team => {
+      return state.map(team => {
         if (team.get('uuid') === action.payload.teamUUID) {
           return team.set(action.payload.key, action.payload.value)
         } else {return team}
       })
-      return test
+    case types.CREATE_RANDOM_TEAMS:
+      return new List(Array.from(Array(30)).map((v, idx) => (
+        new team({
+          tid: (idx + 1),
+          uuid: uuid(),
+          cid: idx < 16 ? 1 : 2,
+          did: idx < 5 ? 1 : idx < 10 ? 2 : idx < 15 ? 3 : idx < 20 ? 4 : idx < 25 ? 5 : idx < 30 ? 6 : 0
+        })
+      )))
     default:
       return state;
   }

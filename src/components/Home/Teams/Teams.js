@@ -6,11 +6,13 @@ import TeamForm from './TeamForm/TeamForm'
 
 const Teams = ({
   createTeam,
+  createRandoTeams,
   teams
 }) => (
   <Grid>
     <Row>
-      <Button className onClick={event => createTeam(team())}>Create Team</Button>
+      <Button className onClick={() => createTeam(team())}>Create Team</Button>
+      <Button className onClick={() => createRandoTeams()}>Create Random Teams</Button>
     </Row>
     <hr/>
     <Row>
@@ -23,7 +25,8 @@ const Teams = ({
 
 Teams.PropTypes = {
   team: PropTypes.object,
-  createTeam: PropTypes.func
+  createTeam: PropTypes.func,
+  createTeams: PropTypes.func
 }
 
 export default Teams

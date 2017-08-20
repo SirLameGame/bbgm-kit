@@ -1,9 +1,10 @@
 import React from 'react'
 import Button from 'material-ui/Button'
+import { player } from './reducers'
 
-const Players = () => (
+const Players = ({createPlayer}) => (
   <div>
-    <Button raised>Create Players</Button>
+    <Button raised onClick={() => createPlayer(player())}>Create Players</Button>
   </div>
 )
 
