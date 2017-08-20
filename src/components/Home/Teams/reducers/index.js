@@ -1,6 +1,7 @@
 import { List, Record } from 'immutable';
 import * as types from '../constants';
 import uuid from 'uuid/v4'
+import rw from 'random-words'
 
 const initialState = new List()
 
@@ -32,10 +33,13 @@ const teamsReducer = (state = initialState, action) => {
     case types.CREATE_RANDOM_TEAMS:
       return new List(Array.from(Array(30)).map((v, idx) => (
         new team({
-          tid: (idx + 1),
+          tid: idx,
           uuid: uuid(),
-          cid: idx < 16 ? 1 : 2,
-          did: idx < 5 ? 1 : idx < 10 ? 2 : idx < 15 ? 3 : idx < 20 ? 4 : idx < 25 ? 5 : idx < 30 ? 6 : 0
+          cid: idx < 15 ? 0 : 1,
+          did: idx < 5 ? 0 : idx < 10 ? 1 : idx < 15 ? 2 : idx < 20 ? 3 : idx < 25 ? 4 : idx < 30 ? 5 : 0,
+          name: String(rw({join: ' ', min: 3, max: 6})),
+          strategy: String(rw(1)),
+          population: 1
         })
       )))
     default:

@@ -8,13 +8,13 @@ export const leagueExportSelector = createSelector(
   gameAttributes,
   (teams, gAttributes) => ({
     'startingSeason': gAttributes.get('startingSeason'),
-    'gameAttributes': {
-      'luxuryPayroll': gAttributes.get('luxuryPayroll'),
-      'luxuryTax': gAttributes.get('luxuryTax'),
-      'maxContract': gAttributes.get('maxContract'),
-      'minPayroll': gAttributes.get('minPayroll'),
-      'salaryCap': gAttributes.get('salaryCap'),
-    },
+    'gameAttributes': [
+      {key: 'luxuryPayroll', value: gAttributes.get('luxuryPayroll')},
+      {key: 'luxuryTax', value: gAttributes.get('luxuryTax')},
+      {key: 'maxContract', value: gAttributes.get('maxContract')},
+      {key: 'minPayroll', value: gAttributes.get('minPayroll')},
+      {key: 'salaryCap', value: gAttributes.get('salaryCap')},
+    ],
     teams: teams.toJS()
   })
 )
