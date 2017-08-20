@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as teamFormActions from '../actions'
-import { FormGroup, FormControl, ControlLabel, Col, Button } from 'react-bootstrap'
+import { Input, Button, FormGroup, Paper } from 'material-ui'
 import './assets/styles/TeamForm.css'
 
 class TeamForm extends Component {
@@ -15,11 +15,7 @@ class TeamForm extends Component {
   }
 
   updateTeam = (e) => {
-    e.persist()
-    console.log(e)
-    let inputKey = e.target.className.split(' ')[0].split('-')[1]
-
-    this.props.updateTeam(this.props.team.uuid, inputKey, e.target.value)
+    this.props.updateTeam(this.props.team.uuid, e.target.offsetParent.dataset.input, e.target.value)
   }
 
   render() {
@@ -30,83 +26,114 @@ class TeamForm extends Component {
       cid,
       did,
       pop,
+      strategy,
+      abbrev,
+      region,
+      imgURL,
       uuid
     } = this.props.team
 
     return (
-      <div>
-        <FormGroup className='team-form'>
+      <Paper>
           {!this.state.open &&
-            <div>
-              <Col xs={2} className='team-tid'>Team ID {tid}</Col>
-              <Col xs={2} className='team-name'>Name {name}</Col>
-              <Col xs={2} className='team-cid'>Conf. ID {cid}</Col>
-              <Col xs={2} className='team-did'>Div. ID {did}</Col>
-              <Col xs={2} className='team-pop'>Population {pop}</Col>
+            <div className='team-display'>
+              <div className='team-tid'>Team ID {tid}</div>
+              <div className='team-name'>Name {name}</div>
+              <div className='team-cid'>Conf. ID {cid}</div>
+              <div className='team-did'>Div. ID {did}</div>
             </div>
           }
           {this.state.open &&
-            <div>
-              <Col xs={2} componentClass={ControlLabel}>
-                Team ID
-              </Col>
-              <Col xs={10}>
-                <FormControl
+            <div className='input-fields'>
+              <FormGroup>
+                <Input
                   value={tid}
+                  style={{input: {textAlign: 'center'}}}
+                  placeholder='Team ID'
+                  data-input={'tid'}
                   onChange={this.updateTeam}
-                  type='text'
+                  type='number'
                   className='team-tid-edit'/>
-              </Col>
-              <Col xs={2} componentClass={ControlLabel}>
-                Name
-              </Col>
-              <Col xs={10}>
-                <FormControl
+              </FormGroup>
+              <FormGroup>
+                <Input
                   value={name}
+                  placeholder='Team Name'
+                  data-input={'name'}
                   onChange={this.updateTeam}
                   type='text'
                   className='team-name-edit'/>
-              </Col>
-              <Col xs={2} componentClass={ControlLabel}>
-                Conf
-              </Col>
-              <Col xs={10}>
-                <FormControl
+              </FormGroup>
+              <FormGroup>
+                <Input
+                  value={abbrev}
+                  placeholder='Team Name Abbreviation'
+                  data-input={'abbrev'}
+                  onChange={this.updateTeam}
+                  type='text'
+                  className='team-abbrev-edit'/>
+              </FormGroup>
+              <FormGroup>
+                <Input
+                  value={imgURL}
+                  placeholder='Team Image URL'
+                  data-input={'imgURL'}
+                  onChange={this.updateTeam}
+                  type='text'
+                  className='team-imgURL-edit'/>
+              </FormGroup>
+              <FormGroup>
+                <Input
+                  value={region}
+                  placeholder='Team Region'
+                  data-input={'region'}
+                  onChange={this.updateTeam}
+                  type='text'
+                  className='team-region-edit'/>
+              </FormGroup>
+              <FormGroup>
+                <Input
+                  value={strategy}
+                  placeholder='Team Strategy'
+                  data-input={'strategy'}
+                  onChange={this.updateTeam}
+                  type='text'
+                  className='team-strategy-edit'/>
+              </FormGroup>
+              <FormGroup>
+                <Input
                   value={cid}
+                  placeholder='Conference ID'
+                  data-input={'cid'}
                   onChange={this.updateTeam}
                   type='number'
                   className='team-cid-edit'/>
-              </Col>
-              <Col xs={2} componentClass={ControlLabel}>
-                Div
-              </Col>
-              <Col xs={10}>
-                <FormControl
+              </FormGroup>
+              <FormGroup>
+                <Input
                   value={did}
+                  data-input={'did'}
+                  placeholder='Division ID'
                   onChange={this.updateTeam}
                   type='number'
                   className='team-did-edit'/>
-              </Col>
-              <Col xs={2} componentClass={ControlLabel}>
-                Population
-              </Col>
-              <Col xs={10}>
-                <FormControl
+              </FormGroup>
+              <FormGroup>
+                <Input
                   value={pop}
+                  placeholder='Population'
+                  data-input={'pop'}
                   onChange={this.updateTeam}
                   type='number'
                   className='team-pop-edit'/>
-              </Col>
+              </FormGroup>
             </div>
           }
-          <Col xs={1}>
-            <Button onClick={() => {this.setState({open: !this.state.open})}}>
+            <Button raised color='primary' onClick={() => {this.setState({open: !this.state.open})}}>
               {this.state.open ? 'Save' : 'Edit'}
             </Button>
-            <Button onClick={() => {this.props.deleteTeam(uuid)}}>X</Button>
-          </Col>
-        </FormGroup>
-      </div>
+            <Button raised color='accent' onClick={() => {this.props.deleteTeam(uuid)}}>X</Button>
+      </Paper>
     )
   }
 }

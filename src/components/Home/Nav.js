@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import FileSaver from 'file-saver'
 import { Nav, NavItem } from 'react-bootstrap'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { leagueExportSelector }  from './Export/selectors'
 
-export default class AppNav extends Component {
+class AppNav extends Component {
 
   download = () => {
-    var file = new File([JSON.stringify(this.props.roster, null, 2)], "roster.txt", {type: "text/plain;charset=utf-8"});
+    var file = new File([JSON.stringify(this.props.leagueExport, null, 2)], "roster.txt", {type: "text/plain;charset=utf-8"});
     FileSaver.saveAs(file);
   }
 
@@ -20,3 +23,12 @@ export default class AppNav extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  leagueExport: leagueExportSelector(state)
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppNav);

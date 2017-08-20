@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GameAttributes from './GameAttributes'
 import Teams from './Teams'
+import Export from './Export'
 import Nav from './Nav'
 import './assets/styles/App.css';
 
@@ -13,7 +14,6 @@ class Home extends Component {
       tab: 'gameAttributes'
     }
   }
-
 
   navSelect = (e) => {
     if (e !== 'download') {
@@ -33,11 +33,7 @@ class Home extends Component {
             <Teams />
           }
           {this.state.tab === 'json' &&
-            <textarea
-              value={JSON.stringify(this.state.roster, null, 2)}
-              className='export-textarea'
-              readOnly
-            />
+            <Export />
           }
         </div>
       </div>

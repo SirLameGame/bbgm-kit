@@ -3,3 +3,20 @@
   padding: 10px;
   border-radius: 5px;
 }
+
+.input-fields {
+  display: flex;
+  flex-flow: column nowrap;
+  padding-top: 2rem;
+}
+
+.input-fields > * {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-bottom: 10px;
+}
+
+.team-display {
+  display: flex;
+  justify-content: space-around;
+}
