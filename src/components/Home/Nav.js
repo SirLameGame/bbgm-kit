@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import FileSaver from 'file-saver'
-import { Nav, NavItem } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { leagueExportSelector }  from './Export/selectors'
+import './assets/styles/Nav.css'
 
-class AppNav extends Component {
+class Nav extends Component {
 
   download = () => {
     var file = new File([JSON.stringify(this.props.leagueExport, null, 2)], "roster.txt", {type: "text/plain;charset=utf-8"});
@@ -14,12 +15,13 @@ class AppNav extends Component {
 
   render() {
     return (
-      <Nav bsStyle="pills" activeKey={1} onSelect={this.props.navSelect}>
-        <NavItem eventKey={'gameAttributes'}>Game Attributes</NavItem>
-        <NavItem eventKey={'teams'}>Teams</NavItem>
-        <NavItem eventKey={'json'}>JSON</NavItem>
-        <NavItem eventKey={'download'} onClick={this.download}>Download</NavItem>
-      </Nav>
+      <div className='nav'>
+        <Link to='/'>Home</Link>
+        <Link to='/attributes'>Game Attributes</Link>
+        <Link to='/teams'>Teams</Link>
+        <Link to='/export'>Export</Link>
+        <Link to='/download' onClick={this.download}>Download</Link>
+      </div>
     )
   }
 }
@@ -31,4 +33,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppNav);
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

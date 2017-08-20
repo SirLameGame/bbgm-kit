@@ -4,7 +4,6 @@ import Export from './Export';
 import { leagueExportSelector } from './selectors'
 
 const mapStateToProps = state => ({
-  teams: state.teams,
   leagueExport: leagueExportSelector(state)
 });
 

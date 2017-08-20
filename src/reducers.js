@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 
 import gameAttributes from './components/Home/GameAttributes/reducers/GameAttributesReducer'
 import teams from './components/Home/Teams/reducers'
+import players from './components/Home/Players/reducers'
 
 const appReducer = combineReducers({
   gameAttributes,
-  teams
+  teams,
+  players
 });
 
 export default appReducer;

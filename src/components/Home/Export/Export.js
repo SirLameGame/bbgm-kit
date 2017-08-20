@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Export = ({leagueExport, teams, what}) => (
+const Export = ({leagueExport}) => (
   <div>
     <textarea
       value={JSON.stringify(leagueExport, null, 2)}
