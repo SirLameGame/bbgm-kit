@@ -2,11 +2,13 @@ import { createSelector } from 'reselect'
 
 const gameAttributes = state => state.gameAttributes
 const teamsSelector = state => state.teams
+const playersSelector = state => state.players
 
 export const leagueExportSelector = createSelector(
   teamsSelector,
   gameAttributes,
-  (teams, gAttributes) => ({
+  playersSelector,
+  (teams, gAttributes, players) => ({
     'startingSeason': gAttributes.get('startingSeason'),
     'gameAttributes': [
       {key: 'luxuryPayroll', value: gAttributes.get('luxuryPayroll')},
@@ -15,6 +17,7 @@ export const leagueExportSelector = createSelector(
       {key: 'minPayroll', value: gAttributes.get('minPayroll')},
       {key: 'salaryCap', value: gAttributes.get('salaryCap')},
     ],
-    teams: teams.toJS()
+    teams: teams.toJS(),
+    players: players.toJS()
   })
 )
