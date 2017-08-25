@@ -1031,6 +1031,10 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
+bootstrap@^3.3.7:
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
+
 boxen@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/boxen/-/boxen-0.6.0.tgz#8364d4248ac34ff0ef1b2f2bf49a6c60ce0d81b6"
@@ -5143,6 +5147,10 @@ rafl@~1.2.1:
   dependencies:
     global "~4.3.0"
 
+random-number-in-range@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/random-number-in-range/-/random-number-in-range-1.0.2.tgz#f38363080ff883104b757f27ae7936de28bbfe8e"
+
 random-words@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/random-words/-/random-words-0.0.1.tgz#40e30092033ad8fb60d66ad15be3620d3c25c41f"
@@ -5188,6 +5196,10 @@ react-bootstrap@^0.31.2:
     react-prop-types "^0.4.0"
     uncontrollable "^4.1.0"
     warning "^3.0.0"
+
+react-data-grid@^2.0.58:
+  version "2.0.58"
+  resolved "https://registry.yarnpkg.com/react-data-grid/-/react-data-grid-2.0.58.tgz#83946bf9cc34d144552349c343e15888c2c6293c"
 
 react-dev-utils@^3.1.0:
   version "3.1.0"

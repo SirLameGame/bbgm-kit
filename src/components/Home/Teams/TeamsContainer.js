@@ -9,7 +9,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   createTeam: teamsActions.createTeam,
-  createRandoTeams: teamsActions.createRandoTeams
+  createRandoTeams: teamsActions.createRandoTeams,
+  updateTeam: teamsActions.updateTeam
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Teams);

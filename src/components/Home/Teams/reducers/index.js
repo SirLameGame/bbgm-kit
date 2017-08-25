@@ -1,6 +1,7 @@
 import { List, Record } from 'immutable';
 import * as types from '../constants';
 import uuid from 'uuid/v4'
+import rando from 'random-number-in-range'
 import rw from 'random-words'
 
 const initialState = new List()
@@ -35,6 +36,7 @@ const teamsReducer = (state = initialState, action) => {
         new team({
           tid: idx,
           uuid: uuid(),
+          pop: rando(50000, 10000000),
           cid: idx < 15 ? 0 : 1,
           did: idx < 5 ? 0 : idx < 10 ? 1 : idx < 15 ? 2 : idx < 20 ? 3 : idx < 25 ? 4 : idx < 30 ? 5 : 0,
           name: String(rw({join: ' ', min: 3, max: 6})),
