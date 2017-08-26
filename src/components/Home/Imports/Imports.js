@@ -14,6 +14,8 @@ const Import = ({
   updateAttribute,
   createConference,
   createDivision,
+  setLoadingMessage,
+  loadingMessage,
 }) => (
   <div className='league-import'>
     <Dropzone
@@ -21,6 +23,7 @@ const Import = ({
       style={{}}
       className='dropzone'
       onDrop={(accepted, rejected) => {
+        setLoadingMessage('Loading Teams')
         let reader = new FileReader()
 
         reader.onload = data => {
@@ -32,7 +35,6 @@ const Import = ({
           clearAttributes()
 
           league.teams.map(team => createTeam(team))
-
           league.players.map(team => createPlayer(team))
 
           updateAttribute('startingSeason', league.startingSeason)
@@ -45,12 +47,15 @@ const Import = ({
               default:
                 return updateAttribute(attribute.key, attribute.value)
             }
-          })}
+          })
+        }
 
           reader.readAsText(accepted[0])
+          setLoadingMessage('League Loaded')
         }}>
       Import league file. Click to select or drop file here
     </Dropzone>
+    <div>{loadingMessage}</div>
   </div>
 )
 
@@ -63,6 +68,8 @@ Import.PropTypes = {
   updateAttribute: PropTypes.func,
   createConference: PropTypes.func,
   createDivision: PropTypes.func,
+  setLoadingMessage: PropTypes.func,
+  loadingMessage: PropTypes.string,
 }
 
 export default Import

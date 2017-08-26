@@ -53,7 +53,7 @@ export const player = new Record({
     type: 'Healthy',
     gamesRemaining: 0
   }
-});
+})
 
 const playersReducer = (state = initialState, action) => {
   switch (action.type) {

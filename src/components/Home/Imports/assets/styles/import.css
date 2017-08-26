@@ -1,10 +1,7 @@
 .league-import {
   display: flex;
-  -webkit-user-select: center;
-  -moz-user-select: center;
-  -ms-user-select: center;
-  -o-user-select: center;
-  user-select: center;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 .dropzone {

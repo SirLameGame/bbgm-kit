@@ -1,11 +1,11 @@
 import React from 'react'
-import Import from '../Import'
+import Imports from '../Imports'
 import FileSaver from 'file-saver'
 import { Button } from 'react-bootstrap'
 
 const Export = ({leagueExport}) => (
   <div>
-    <Import />
+    <Imports />
     <textarea
       value={JSON.stringify(leagueExport, null, 2)}
       className='export-textarea'

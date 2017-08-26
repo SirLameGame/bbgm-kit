@@ -4,8 +4,8 @@ import { player } from './reducers'
 
 const Players = ({createPlayer}) => (
   <div>
-    <Button raised onClick={() => createPlayer(player())}>Create Players</Button>
+
   </div>
 )
-
+//<Button raised onClick={() => createPlayer(player())}>Create Players</Button>
 export default Players
