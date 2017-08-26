@@ -58,7 +58,10 @@ export const player = new Record({
 const playersReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.CREATE_PLAYER:
+      action.payload = new player(action.payload)
       return state.push(action.payload.set('uuid', uuid()))
+    case types.CLEAR_PLAYERS:
+      return initialState
     default:
       return state;
   }

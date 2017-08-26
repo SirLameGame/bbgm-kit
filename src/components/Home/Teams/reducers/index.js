@@ -22,6 +22,7 @@ export const team = new Record({
 const teamsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.CREATE_TEAM:
+      action.payload = new team(action.payload)
       return state.push(action.payload.set('uuid', uuid()))
     case types.DELETE_TEAM:
       return state.filter(obj => {return obj.uuid !== action.payload})
@@ -31,6 +32,8 @@ const teamsReducer = (state = initialState, action) => {
           return team.set(action.payload.key, action.payload.value)
         } else {return team}
       })
+    case types.CLEAR_TEAMS:
+      return initialState
     case types.CREATE_RANDOM_TEAMS:
       return new List(Array.from(Array(30)).map((v, idx) => (
         new team({

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import gameAttributes from './components/Home/GameAttributes/reducers/GameAttributesReducer'
+import gameAttributes from './components/Home/GameAttributes/reducers'
 import teams from './components/Home/Teams/reducers'
 import players from './components/Home/Players/reducers'
 

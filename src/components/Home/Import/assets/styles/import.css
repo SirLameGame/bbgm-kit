@@ -1,0 +1,17 @@
+.league-import {
+  display: flex;
+  -webkit-user-select: center;
+  -moz-user-select: center;
+  -ms-user-select: center;
+  -o-user-select: center;
+  user-select: center;
+}
+
+.dropzone {
+  padding: 10px;
+  margin: 10px 0px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  border: 1px dotted black;
+}

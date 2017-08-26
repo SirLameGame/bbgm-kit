@@ -24,7 +24,7 @@ const Root = () => (
         <Route exact path="/attributes" component={GameAttributes}/>
         <Route exact path="/teams" component={Teams}/>
         <Route exact path="/players" component={Players}/>
-        <Route exact path="/export" component={Export}/>
+        <Route exact path="/transfer" component={Export}/>
         <Route path="*" component={NotFound}/>
       </Switch>
     </BaseLayout>

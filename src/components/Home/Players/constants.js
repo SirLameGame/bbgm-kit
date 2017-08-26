@@ -1,1 +1,2 @@
 export const CREATE_PLAYER = 'CREATE_PLAYER'
+export const CLEAR_PLAYERS = 'CLEAR_PLAYERS'

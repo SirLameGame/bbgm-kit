@@ -16,6 +16,8 @@ export const leagueExportSelector = createSelector(
       {key: 'maxContract', value: gAttributes.get('maxContract')},
       {key: 'minPayroll', value: gAttributes.get('minPayroll')},
       {key: 'salaryCap', value: gAttributes.get('salaryCap')},
+      {key: 'confs', value: gAttributes.get('confs').toJS()},
+      {key: 'divs', value: gAttributes.get('divs').toJS()},
     ],
     teams: teams.toJS(),
     players: players.toJS()
