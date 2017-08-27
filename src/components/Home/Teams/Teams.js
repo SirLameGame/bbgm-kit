@@ -50,11 +50,15 @@ const columns = [
 const Teams = ({
   createTeam,
   createRandoTeams,
+  clearTeams,
   teams,
   updateTeam}) => (
     <div className='team-editor'>
       <Button className onClick={() => createTeam(team())}>Create Team</Button>
-      <Button className onClick={() => createRandoTeams()}>Create Random Teams</Button>
+      <Button className onClick={() => {
+          clearTeams()
+          createRandoTeams()
+        }}>Create Random Teams</Button>
       <hr/>
       <ReactDataGrid
         enableCellSelect={true}
@@ -72,7 +76,8 @@ Teams.PropTypes = {
   team: PropTypes.object,
   createTeam: PropTypes.func,
   createTeams: PropTypes.func,
-  updateTeam: PropTypes.func
+  updateTeam: PropTypes.func,
+  clearTeams: PropTypes.func,
 }
 
 export default Teams
