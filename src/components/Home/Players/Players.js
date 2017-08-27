@@ -1,6 +1,6 @@
 import React from 'react'
-import Button from 'material-ui/Button'
-import { player } from './reducers'
+//import Button from 'material-ui/Button'
+//import { player } from './reducers'
 
 const Players = ({createPlayer}) => (
   <div>

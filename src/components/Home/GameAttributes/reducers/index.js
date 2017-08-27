@@ -31,8 +31,28 @@ const gameAttributesReducer = (state = initialState, action) => {
       return initialState
     case types.CREATE_CONFERENCE:
       return state.updateIn(['confs'], list => list.push((new conf(action.payload)).set('uuid', uuid())))
+    case types.UPDATE_CONFERENCE:
+      return state.updateIn(['confs'], list => list.map(conf => {
+        if (conf.get('uuid') === action.payload.uuid) {
+          return conf.set(action.payload.key, action.payload.value)
+        } else { return conf}
+      }))
+    case types.DELETE_CONFERENCE:
+      return state.updateIn(['confs'], list => list.filter(div => (
+        div.get('uuid') !== action.payload
+      )))
     case types.CREATE_DIVISION:
       return state.updateIn(['divs'], list => list.push((new div(action.payload)).set('uuid', uuid())))
+    case types.UPDATE_DIVISION:
+      return state.updateIn(['divs'], list => list.map(div => {
+        if (div.get('uuid') === action.payload.uuid) {
+          return div.set(action.payload.key, action.payload.value)
+        } else { return div}
+      }))
+    case types.DELETE_DIVISION:
+      return state.updateIn(['divs'], list => list.filter(div => (
+        div.get('uuid') !== action.payload
+      )))
     default:
       return state;
   }

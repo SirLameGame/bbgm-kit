@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   createTeam: teamsActions.createTeam,
   clearTeams: teamsActions.clearTeams,
+  deleteTeam: teamsActions.deleteTeam,
   createRandoTeams: teamsActions.createRandoTeams,
   updateTeam: teamsActions.updateTeam
 }, dispatch)

@@ -9,6 +9,12 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   updateAttribute: gaActions.updateAttribute,
+  createConference: gaActions.createConference,
+  createDivision: gaActions.createDivision,
+  updateDivision: gaActions.updateDivision,
+  updateConference: gaActions.updateConference,
+  deleteConference: gaActions.deleteConference,
+  deleteDivision: gaActions.deleteDivision,
 }, dispatch)
 
 
