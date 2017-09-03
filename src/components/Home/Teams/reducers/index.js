@@ -39,7 +39,7 @@ const teamsReducer = (state = initialState, action) => {
         new team({
           tid: idx,
           uuid: uuid(),
-          pop: rando(50000, 10000000),
+          pop: parseFloat((Math.random() * (10 - 0.8) + 0.0200).toFixed(1)),
           cid: idx < 15 ? 0 : 1,
           did: idx < 5 ? 0 : idx < 10 ? 1 : idx < 15 ? 2 : idx < 20 ? 3 : idx < 25 ? 4 : idx < 30 ? 5 : 0,
           name: String(rw({join: ' ', min: 3, max: 6})),
