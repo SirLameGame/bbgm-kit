@@ -65,6 +65,10 @@ class Players extends PureComponent {
       deletePlayer,
     } = this.props
 
+    let {
+      selectedPlayerRows,
+    } = this.state
+
     return (
       <div>
         <ReactDataGrid
@@ -77,6 +81,11 @@ class Players extends PureComponent {
             }}>Create Random Player</Button>
             <button
               className='btn'
+              style={(selectedPlayerRows.length > 0 ? {
+                backgroundColor: 'red',
+                coor: 'white',
+              }:{})}
+              disabled={(selectedPlayerRows.length < 1)}
               onClick={() => {this.state.selectedPlayerRows.map(row => {
                 return deletePlayer(players.get(row).uuid)
               }); this.setState({selectedPlayerRows: []})}}
@@ -92,7 +101,7 @@ class Players extends PureComponent {
             onRowsSelected: this.onRowsSelected,
             onRowsDeselected: this.onRowsDeselected,
             selectBy: {
-              indexes: this.state.selectedPlayerRows
+              indexes: selectedPlayerRows
             }
           }}
           onGridRowsUpdated={data => {
