@@ -34,7 +34,11 @@ const gameAttributesReducer = (state = initialState, action) => {
     case types.UPDATE_CONFERENCE:
       return state.updateIn(['confs'], list => list.map(conf => {
         if (conf.get('uuid') === action.payload.uuid) {
-          return conf.set(action.payload.key, parseFloat(action.payload.value))
+          if (['did'].includes(action.payload.key)) {
+            return conf.set(action.payload.key, parseFloat(action.payload.value))
+          } else {
+            return conf.set(action.payload.key, action.payload.value)
+          }
         } else { return conf}
       }))
     case types.DELETE_CONFERENCE:
@@ -46,7 +50,11 @@ const gameAttributesReducer = (state = initialState, action) => {
     case types.UPDATE_DIVISION:
       return state.updateIn(['divs'], list => list.map(div => {
         if (div.get('uuid') === action.payload.uuid) {
-          return div.set(action.payload.key, parseFloat(action.payload.value))
+          if (['did', 'cid'].includes(action.payload.key)) {
+            return div.set(action.payload.key, parseFloat(action.payload.value))
+          } else {
+            return div.set(action.payload.key, action.payload.value)
+          }
         } else { return div}
       }))
     case types.DELETE_DIVISION:
