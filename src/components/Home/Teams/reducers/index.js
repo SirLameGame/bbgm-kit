@@ -36,7 +36,7 @@ const teamsReducer = (state = initialState, action) => {
             return team.set(action.payload.key, parseInt(action.payload.value))
           } else
           if (['pop'].includes(action.payload.key)) {
-            return team.set(action.payload.key, paseFloat(action.payload.value))
+            return team.set(action.payload.key, parseFloat(action.payload.value))
           } else {return team.set(action.payload.key, action.payload.value)}
         } else {return team}
       })
