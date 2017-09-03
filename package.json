@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "cities-list": "^1.0.3",
     "file-saver": "^1.3.3",
     "immutable": "^3.8.1",
+    "lodash": "^4.17.4",
     "material-ui": "next",
+    "nick-generator": "^0.1.4",
     "prop-types": "^15.5.10",
     "random-number-in-range": "^1.0.2",
     "random-words": "^0.0.1",

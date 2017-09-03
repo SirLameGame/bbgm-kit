@@ -1,7 +1,9 @@
 import { List, Record } from 'immutable';
 import * as types from '../constants';
 import uuid from 'uuid/v4'
-import rw from 'random-words'
+import cities from 'cities-list'
+import nick from 'nick-generator'
+import { sample } from 'lodash'
 
 const initialState = new List()
 
@@ -33,7 +35,7 @@ const teamsReducer = (state = initialState, action) => {
       return state.map(team => {
         if (team.get('uuid') === action.payload.teamUUID) {
           if (['tid', 'cid', 'did'].includes(action.payload.key)) {
-            return team.set(action.payload.key, parseInt(action.payload.value))
+            return team.set(action.payload.key, parseInt(action.payload.value, 10))
           } else
           if (['pop'].includes(action.payload.key)) {
             return team.set(action.payload.key, parseFloat(action.payload.value))
@@ -43,18 +45,28 @@ const teamsReducer = (state = initialState, action) => {
     case types.CLEAR_TEAMS:
       return initialState
     case types.CREATE_RANDOM_TEAMS:
-      return new List(Array.from(Array(30)).map((v, idx) => (
-        new team({
+      return new List(Array.from(Array(30)).map((v, idx) => {
+
+        let name = nick() + 's'
+        let abbrev = name.replace(/\s/g, '').split('')
+        do {
+          abbrev.splice(Math.floor(Math.random() * abbrev.length), 1)
+        } while (abbrev.length > 3)
+
+        return new team({
           tid: idx,
           uuid: uuid(),
+          abbrev: abbrev.join('').toUpperCase(),
+          region: sample(Object.keys(cities)),
           pop: parseFloat((Math.random() * (10 - 0.8) + 0.0200).toFixed(1)),
           cid: idx < 15 ? 0 : 1,
           did: idx < 5 ? 0 : idx < 10 ? 1 : idx < 15 ? 2 : idx < 20 ? 3 : idx < 25 ? 4 : idx < 30 ? 5 : 0,
-          name: String(rw({join: ' ', min: 3, max: 6})),
+          name: name,
           strategy: (['contending', 'rebuilding', 'hopeless', 'elite'][Math.floor(Math.random() * 4)]) ,
           population: 1
         })
-      )))
+
+      }))
     default:
       return state;
   }
