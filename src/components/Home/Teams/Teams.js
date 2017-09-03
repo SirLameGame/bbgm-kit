@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'react-bootstrap'
-import { team } from './reducers'
 import { Toolbar } from 'react-data-grid-addons'
 import ReactDataGrid from 'react-data-grid'
 import './assets/styles/Teams.css'
@@ -9,14 +8,14 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 const columns = [
   {
-    name: 'Team ID',
-    key: 'tid',
-    width: 70,
+    name: 'Name',
+    key: 'name',
     editable: true,
     resizable: true,
   }, {
-    name: 'Name',
-    key: 'name',
+    name: 'Team ID',
+    key: 'tid',
+    width: 70,
     editable: true,
     resizable: true,
   }, {
@@ -94,7 +93,7 @@ class Teams extends PureComponent {
             <Toolbar
             addRow={true}
             addRowButtonText="Create Team"
-            onAddRow={() => createTeam(team())}>
+            onAddRow={() => createTeam()}>
             <Button className onClick={() => {
                 clearTeams()
                 createRandoTeams()

@@ -60,6 +60,8 @@ const playersReducer = (state = initialState, action) => {
     case types.CREATE_PLAYER:
       action.payload = new player(action.payload)
       return state.push(action.payload.set('uuid', uuid()))
+    case types.DELETE_PLAYER:
+      return state.filter(obj => {return obj.uuid !== action.payload})
     case types.CLEAR_PLAYERS:
       return initialState
     default:

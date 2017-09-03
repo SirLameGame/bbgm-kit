@@ -4,10 +4,12 @@ import Players from './Players';
 import * as playerActions from './actions'
 
 const mapStateToProps = state => ({
+  players: state.players
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  createPlayer: playerActions.createPlayer
+  createPlayer: playerActions.createPlayer,
+  deletePlayer: playerActions.deletePlayer,
 }, dispatch)
 
 
