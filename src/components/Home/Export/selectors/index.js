@@ -19,7 +19,7 @@ export const leagueExportSelector = createSelector(
       {key: 'confs', value: gAttributes.get('confs').toJS()},
       {key: 'divs', value: gAttributes.get('divs').toJS()},
     ],
-    teams: teams.toJS(),
-    players: players.toJS()
-  })
+    ...(teams.size > 0 ? {teams: teams.toJS()} : {}),
+    ...(players.size > 0 ? {players: teams.toJS()} : {}),
+  }),
 )
