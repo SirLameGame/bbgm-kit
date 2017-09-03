@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import Button from 'material-ui/Button'
 //import { player } from './reducers'
 import { Toolbar } from 'react-data-grid-addons'
+import Player from './Player'
 import ReactDataGrid from 'react-data-grid'
 
 const columns = [
@@ -71,6 +72,7 @@ class Players extends PureComponent {
 
     return (
       <div>
+        {false && <Player />}
         <ReactDataGrid
           enableCellSelect={true}
           columns={columns}

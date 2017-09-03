@@ -11,6 +11,16 @@ export const deletePlayer = (uuid: String) => ({
   payload: uuid
 });
 
+
+export const updatePlayer = (uuid: String, key: String, value: String) => ({
+  type: types.DELETE_PLAYER,
+  payload: {
+    uuid,
+    key,
+    value,
+  }
+});
+
 export const clearPlayers = () => ({
   type: types.CLEAR_PLAYERS,
 });

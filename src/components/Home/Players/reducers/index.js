@@ -11,25 +11,25 @@ export const player = new Record({
   pos: '',
   hgt: 0,
   weight: 0,
-  born: {
+  born: new Record({
     year: 0,
     loc: ''
-  },
+  }),
   imgURL: '',
-  contract: {
+  contract: new Record({
     amount: 0,
     exp: 0
-  },
-  draft: {
+  }),
+  draft: new Record({
     round: 0,
     pick: 0,
     tid: 0,
     originalTid: 0,
     year: 0
-  },
-  college: 0,
-  ratings: [
-    {
+  }),
+  college: '',
+  ratings: new List([
+    new Record({
       hgt: 0,
       stre: 0,
       spd: 0,
@@ -47,12 +47,12 @@ export const player = new Record({
       reb: 0,
       pot: 0,
       skills: []
-    }
-  ],
-  injury: {
+    })
+  ]),
+  injury: new Record({
     type: 'Healthy',
     gamesRemaining: 0
-  }
+  })
 })
 
 const playersReducer = (state = initialState, action) => {
@@ -60,8 +60,74 @@ const playersReducer = (state = initialState, action) => {
     case types.CREATE_PLAYER:
       action.payload = new player(action.payload)
       return state.push(action.payload.set('uuid', uuid()))
-    case types.DELETE_PLAYER:
-      return state.filter(obj => {return obj.uuid !== action.payload})
+    case types.UPDATE_PLAYER:
+      switch(action.payload.key) {
+        // String attributes
+        case 'name':
+        case 'pos':
+        case 'college':
+          state.players.map(player => {
+            if (player.get('uuid') === action.payload.uuid) {
+              return player.set(action.payload.key, action.payload.value)
+            } else return player
+          })
+          break
+        // Attributes to parse as Integer
+        case 'tid':
+        case 'hght':
+          state.players.map(player => {
+            if (player.get('uuid') === action.payload.uuid) {
+              return player.set(action.payload.key, parseInt(action.payload.value, 10))
+            } else return player
+          })
+          break
+        case 'born':
+          state.players.map(player => {
+            if (player.get('uuid') === action.payload.uuid) {
+              return player.born.set(action.payload.key,
+                Object.assign({},
+                  { year: parseInt(action.payload.value.year, 10) || player.born.get('year') },
+                  { loc: action.payload.value.loc || player.born.get('loc') }))
+            } else return player
+          })
+          break
+        case 'contract':
+          state.players.map(player => {
+            if (player.get('uuid') === action.payload.uuid) {
+              return player.set(action.payload.key,
+                Object.assign({},
+                  { amount: parseInt(action.payload.value.amount, 10) || player.contract.get('amount') },
+                  { exp: parseInt(action.payload.value.exp, 10) || player.contract.get('exp') }))
+            } else return player
+          })
+          break
+        case 'injury':
+          state.players.map(player => {
+            if (player.get('uuid') === action.payload.uuid) {
+              return player.set(action.payload.key,
+                Object.assign({},
+                  { type: parseInt(action.payload.value.type, 10) || player.injury.get('type') },
+                  { gamesRemaining: parseInt(action.payload.value.gamesRemaining, 10) || player.injury.get('gamesRemaining') }))
+            } else return player
+          })
+          break
+        case 'draft':
+          state.players.map(player => {
+            if (player.get('uuid') === action.payload.uuid) {
+              return player.set(action.payload.key,
+                Object.assign({},
+                  {round: parseInt(action.payload.value.round, 10) || player.contract.get('round')},
+                  {pick: parseInt(action.payload.value.pick, 10) || player.contract.get('pick')},
+                  {tid: parseInt(action.payload.value.tid, 10) || player.contract.get('tid')},
+                  {originalTid: parseInt(action.payload.value.originalTid, 10) || player.contract.get('originalTid')},
+                  {year: parseInt(action.payload.value.year, 10) || player.contract.get('year')}))
+            } else return player
+          })
+          break
+        default:
+          return state
+      }
+      break
     case types.CLEAR_PLAYERS:
       return initialState
     default:
