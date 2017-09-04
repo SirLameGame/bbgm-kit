@@ -1,16 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux';
+import { Button } from 'material-ui'
 import { connect } from 'react-redux';
 import './assets/styles/Nav.css'
 
 const Nav = () => (
   <div className='nav'>
-    <Link to='/'>Home</Link>
-    <Link to='/attributes'>Game Attributes</Link>
-    <Link to='/teams'>Teams</Link>
-    <Link to='/players'>Players</Link>
-    <Link to='/transfer'>Transfer</Link>
+    <Link to='/'><Button>Home</Button></Link>
+    <Link to='/attributes'><Button>Game Attributes</Button></Link>
+    <Link to='/teams'><Button>Teams</Button></Link>
+    <Link to='/players'><Button>Players</Button></Link>
+    <Link to='/transfer'><Button>Transfer</Button></Link>
   </div>
 )
 
