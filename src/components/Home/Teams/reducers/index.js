@@ -33,16 +33,15 @@ const teamsReducer = (state = initialState, action) => {
     case types.DELETE_TEAM:
       return state.filter(obj => {return obj.uuid !== action.payload})
     case types.UPDATE_TEAM:
-      return state.map(team => {
-        if (team.get('uuid') === action.payload.teamUUID) {
-          if (['tid', 'cid', 'did'].includes(action.payload.key)) {
-            return team.set(action.payload.key, parseInt(action.payload.value, 10))
-          } else
-          if (['pop'].includes(action.payload.key)) {
-            return team.set(action.payload.key, parseFloat(action.payload.value))
-          } else {return team.set(action.payload.key, action.payload.value)}
-        } else {return team}
-      })
+      return state.map(team => (
+        team.get('uuid') === action.payload.teamUUID ?
+          ['tid', 'cid', 'did'].includes(action.payload.key)
+            ? team.set(action.payload.key, parseInt(action.payload.value, 10))
+            : null
+          ['pop'].includes(action.payload.key)
+              ? team.set(action.payload.key, parseFloat(action.payload.value))
+              : null
+        : team))
     case types.CLEAR_TEAMS:
       return initialState
     case types.CREATE_RANDOM_TEAMS:

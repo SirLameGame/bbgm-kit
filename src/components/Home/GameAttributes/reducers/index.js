@@ -32,15 +32,13 @@ const gameAttributesReducer = (state = initialState, action) => {
     case types.CREATE_CONFERENCE:
       return state.updateIn(['confs'], list => list.push((new conf(action.payload)).set('uuid', uuid())))
     case types.UPDATE_CONFERENCE:
-      return state.updateIn(['confs'], list => list.map(conf => {
-        if (conf.get('uuid') === action.payload.uuid) {
-          if (['did'].includes(action.payload.key)) {
-            return conf.set(action.payload.key, parseFloat(action.payload.value))
-          } else {
-            return conf.set(action.payload.key, action.payload.value)
-          }
-        } else { return conf}
-      }))
+      return state.updateIn(['confs'], list => list.map(conf => (
+        conf.get('uuid') === action.payload.uuid
+          ? ['did'].includes(action.payload.key)
+            ? conf.set(action.payload.key, parseFloat(action.payload.value))
+            : conf.set(action.payload.key, action.payload.value)
+          : conf
+      )))
     case types.DELETE_CONFERENCE:
       return state.updateIn(['confs'], list => list.filter(div => (
         div.get('uuid') !== action.payload
@@ -48,15 +46,13 @@ const gameAttributesReducer = (state = initialState, action) => {
     case types.CREATE_DIVISION:
       return state.updateIn(['divs'], list => list.push((new div(action.payload)).set('uuid', uuid())))
     case types.UPDATE_DIVISION:
-      return state.updateIn(['divs'], list => list.map(div => {
-        if (div.get('uuid') === action.payload.uuid) {
-          if (['did', 'cid'].includes(action.payload.key)) {
-            return div.set(action.payload.key, parseFloat(action.payload.value))
-          } else {
-            return div.set(action.payload.key, action.payload.value)
-          }
-        } else { return div}
-      }))
+      return state.updateIn(['divs'], list => list.map(div => (
+        div.get('uuid') === action.payload.uuid
+          ? ['did', 'cid'].includes(action.payload.key)
+            ? div.set(action.payload.key, parseFloat(action.payload.value))
+            : div.set(action.payload.key, action.payload.value)
+          : div
+      )))
     case types.DELETE_DIVISION:
       return state.updateIn(['divs'], list => list.filter(div => (
         div.get('uuid') !== action.payload

@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types';
-import {FormGroup, FormControl, ControlLabel, Form, Col} from 'react-bootstrap'
 import ReactDataGrid from 'react-data-grid'
+import { TextField } from 'material-ui'
 import { Toolbar } from 'react-data-grid-addons'
-import 'bootstrap/dist/css/bootstrap.css'
+import './assets/styles/GameAttributes.css'
 
 const confColumns = [
   {
@@ -81,102 +81,33 @@ class GameAttributes extends PureComponent {
       updateDivision,
     } = this.props
 
+    let attributes = [
+      {attrib: 'startingSeason', label: 'Starting Season', min: 0, max: 99999999999},
+      {attrib: 'luxuryPayroll', label: 'Luxury Payroll', min: 0, max: 99999999999},
+      {attrib: 'minPayroll', label: 'Minimum Payroll', min: 0, max: 99999999999},
+      {attrib: 'luxuryTax', label: 'Luxury Tax', min: 0, max: 99999999999},
+      {attrib: 'maxContract', label: 'Maximum Contract', min: 0, max: 99999999999},
+      {attrib: 'minContract', label: 'Minimum Contract', min: 0, max: 99999999999},
+      {attrib: 'salaryCap', label: 'Salary Cap', min: 0, max: 99999999999},
+    ]
+
+    let attribInputs = attributes.map((attrib, idx) => (
+      <div key={attrib.attrib} className='attributeInput'>
+          <TextField
+            value={gameAttributes.get(attrib.attrib)}
+            label={ attrib.label }
+            onChange={event => updateAttribute(attrib.attrib, event.target.value)}
+            type='number'
+            min={attrib.min}
+            className={attrib.attrib}
+            fullWidth/>
+      </div>
+    ))
+
     return (
       <div>
         <h1>Attributes</h1>
-        <Form horizontal>
-          <FormGroup>
-            <Col xs={2} componentClass={ControlLabel}>
-              Starting Season
-            </Col>
-            <Col xs={10}>
-              <FormControl
-                value={gameAttributes.get('startingSeason')}
-                onChange={event => updateAttribute('startingSeason', event.target.value)}
-                type='number'
-                min={0}
-                className='startingSeason' />
-            </Col>
-          </FormGroup>
-          <FormGroup>
-            <Col xs={2} componentClass={ControlLabel}>
-              Luxury Payroll
-            </Col>
-            <Col xs={10}>
-              <FormControl
-                value={gameAttributes.get('luxuryPayroll')}
-                onChange={event => updateAttribute('luxuryPayroll', event.target.value)}
-                type='number'
-                min={0}
-                className='luxuryPayroll' />
-            </Col>
-          </FormGroup>
-          <FormGroup>
-            <Col xs={2} componentClass={ControlLabel}>
-              Min Payroll
-            </Col>
-            <Col xs={10}>
-              <FormControl
-                value={gameAttributes.get('minPayroll')}
-                onChange={event => updateAttribute('minPayroll', event.target.value)}
-                type='number'
-                min={0}
-                className='minPayroll' />
-            </Col>
-          </FormGroup>
-          <FormGroup>
-            <Col xs={2} componentClass={ControlLabel}>
-              Luxury Tax
-            </Col>
-            <Col xs={10}>
-              <FormControl
-                value={gameAttributes.get('luxuryTax')}
-                onChange={event => updateAttribute('luxuryTax', event.target.value)}
-                type='number'
-                min={0}
-                className='luxuryTax' />
-            </Col>
-          </FormGroup>
-          <FormGroup>
-            <Col xs={2} componentClass={ControlLabel}>
-              Max Contract
-            </Col>
-            <Col xs={10}>
-              <FormControl
-                value={gameAttributes.get('maxContract')}
-                onChange={event => updateAttribute('maxContract', event.target.value)}
-                type='number'
-                min={0}
-                className='maxContract' />
-            </Col>
-          </FormGroup>
-          <FormGroup>
-            <Col xs={2} componentClass={ControlLabel}>
-              Salary Cap
-            </Col>
-            <Col xs={10}>
-              <FormControl
-                value={gameAttributes.get('salaryCap')}
-                onChange={event => updateAttribute('salaryCap', event.target.value)}
-                type='number'
-                min={0}
-                className='salaryCap' />
-            </Col>
-          </FormGroup>
-          <FormGroup>
-            <Col xs={2} componentClass={ControlLabel}>
-              Min Contract
-            </Col>
-            <Col xs={10}>
-              <FormControl
-                value={gameAttributes.get('minContract')}
-                onChange={event => updateAttribute('minContract', event.target.value)}
-                type='number'
-                min={0}
-                className='minContract' />
-            </Col>
-          </FormGroup>
-        </Form>
+        { attribInputs }
         <h2>Conferences</h2>
         <ReactDataGrid
           enableCellSelect={true}
