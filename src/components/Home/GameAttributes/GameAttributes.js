@@ -110,7 +110,9 @@ class GameAttributes extends PureComponent {
     return (
       <div>
         <h1>Attributes</h1>
-        { attribInputs }
+          <div className='attribs'>
+            { attribInputs }
+          </div>
         <h2>Conferences</h2>
         <ReactDataGrid
           enableCellSelect={true}

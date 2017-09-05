@@ -7,6 +7,14 @@ label {
   font-size: 2rem;
 }
 
+.attribs {
+  column-count: 2;
+
+  @media (max-width: 500px) {
+    column-count: 1;
+  }
+}
+
 .attributeInput {
   padding: 1rem;
 }
