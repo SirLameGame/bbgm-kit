@@ -37,8 +37,7 @@ const teamsReducer = (state = initialState, action) => {
         team.get('uuid') === action.payload.teamUUID ?
           ['tid', 'cid', 'did'].includes(action.payload.key)
             ? team.set(action.payload.key, parseInt(action.payload.value, 10))
-            : null
-          ['pop'].includes(action.payload.key)
+            : ['pop'].includes(action.payload.key)
               ? team.set(action.payload.key, parseFloat(action.payload.value))
               : null
         : team))

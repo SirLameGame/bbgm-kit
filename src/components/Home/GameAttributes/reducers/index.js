@@ -9,12 +9,12 @@ const confs = new List()
 const divs = new List()
 
 const gameAttributes = new Record({
-  'luxuryPayroll': 0,
-  'luxuryTax': 0,
-  'maxContract': 0,
-  'minPayroll': 0,
-  'salaryCap': 0,
-  'minContract': 0,
+  'luxuryPayroll': '',
+  'luxuryTax': '',
+  'maxContract': '',
+  'minPayroll': '',
+  'salaryCap': '',
+  'minContract': '',
   'numPlayoffRounds': 7,
   'confs': confs,
   'divs': divs,

@@ -3,6 +3,10 @@ input {
   text-align: center;
 }
 
+label {
+  font-size: 2rem;
+}
+
 .attributeInput {
   padding: 1rem;
 }

@@ -82,13 +82,14 @@ class GameAttributes extends PureComponent {
     } = this.props
 
     let attributes = [
-      {attrib: 'startingSeason', label: 'Starting Season', min: 0, max: 99999999999},
-      {attrib: 'luxuryPayroll', label: 'Luxury Payroll', min: 0, max: 99999999999},
-      {attrib: 'minPayroll', label: 'Minimum Payroll', min: 0, max: 99999999999},
-      {attrib: 'luxuryTax', label: 'Luxury Tax', min: 0, max: 99999999999},
-      {attrib: 'maxContract', label: 'Maximum Contract', min: 0, max: 99999999999},
-      {attrib: 'minContract', label: 'Minimum Contract', min: 0, max: 99999999999},
-      {attrib: 'salaryCap', label: 'Salary Cap', min: 0, max: 99999999999},
+      {attrib: 'startingSeason', helper: 'What year to start the game', placeholder: '2018', label: 'Starting Season', min: 0, max: 99999999999},
+      {attrib: 'luxuryPayroll', helper: '', placeholder: '119000', label: 'Luxury Payroll', min: 0, max: 99999999999},
+      {attrib: 'minPayroll', helper: 'The teams minimun payroll', placeholder: '84000', label: 'Minimum Payroll', min: 0, max: 99999999999},
+      {attrib: 'luxuryTax', helper: 'The luxury tax charge', placeholder: '1', label: 'Luxury Tax', min: 0, max: 99999999999},
+      {attrib: 'maxContract', helper: 'Max player contract size', placeholder: '25000', label: 'Maximum Contract', min: 0, max: 99999999999},
+      {attrib: 'minContract', helper: 'Min player contract size', placeholder: '815', label: 'Minimum Contract', min: 0, max: 99999999999},
+      {attrib: 'salaryCap', helper: 'The salary cap for teams', placeholder: '99000', label: 'Salary Cap', min: 0, max: 99999999999},
+      {attrib: 'numPlayoffRounds', helper: '', placeholder: '7', label: 'Playoff Rounds', min: 0, max: 99999999999},
     ]
 
     let attribInputs = attributes.map((attrib, idx) => (
@@ -98,6 +99,8 @@ class GameAttributes extends PureComponent {
             label={ attrib.label }
             onChange={event => updateAttribute(attrib.attrib, event.target.value)}
             type='number'
+            helperText={attrib.helper}
+            placeholder={attrib.placeholder}
             min={attrib.min}
             className={attrib.attrib}
             fullWidth/>
