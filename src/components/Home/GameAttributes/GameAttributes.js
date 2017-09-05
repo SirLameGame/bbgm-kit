@@ -122,9 +122,9 @@ class GameAttributes extends PureComponent {
             onAddRow={() => createConference()}>
             <button
               className='btn'
-              onClick={() => {this.state.selectedConfRows.map(row => {
-                return deleteConference(gameAttributes.confs.get(row).uuid)
-              }); this.setState({selectedConfRows: []})}}
+              onClick={() => {this.state.selectedConfRows.map(row => (
+                deleteConference(gameAttributes.confs.get(row).uuid)
+              )); this.setState({selectedConfRows: []})}}
               type='button'>Delete</button>
           </Toolbar>
           }
@@ -140,9 +140,9 @@ class GameAttributes extends PureComponent {
               indexes: this.state.selectedConfRows
             }
           }}
-          onGridRowsUpdated={data => {
+          onGridRowsUpdated={data => (
             updateConference({uuid: data.fromRowData.get('uuid'), key: data.cellKey, value: data.updated[data.cellKey]})
-          }}/>
+          )}/>
         <h2>Divisions</h2>
         <ReactDataGrid
           rowKey="uuid"
@@ -155,9 +155,9 @@ class GameAttributes extends PureComponent {
             onAddRow={() => createDivision()}>
             <button
               className='btn'
-              onClick={() => {this.state.selectedDivRows.map(row => {
-                return deleteDivision(gameAttributes.divs.get(row).uuid)
-              }); this.setState({selectedDivRows: []})}}
+              onClick={() => {this.state.selectedDivRows.map(row => (
+                deleteDivision(gameAttributes.divs.get(row).uuid)
+              )); this.setState({selectedDivRows: []})}}
               type='button'>Delete</button>
           </Toolbar>
           }
@@ -173,9 +173,9 @@ class GameAttributes extends PureComponent {
               indexes: this.state.selectedDivRows,
             }
           }}
-          onGridRowsUpdated={data => {
+          onGridRowsUpdated={data => (
             updateDivision({uuid: data.fromRowData.get('uuid'), key: data.cellKey, value: data.updated[data.cellKey]})
-          }}/>
+          )}/>
       </div>
     )
   }
