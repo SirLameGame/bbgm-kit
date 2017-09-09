@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import Button from 'material-ui/Button'
 //import { player } from './reducers'
 import { Toolbar } from 'react-data-grid-addons'
-import Player from './Player'
+import { withRouter } from "react-router-dom";
 import ReactDataGrid from 'react-data-grid'
 
 const columns = [
@@ -64,6 +64,8 @@ class Players extends PureComponent {
       players,
       createPlayer,
       deletePlayer,
+      updatePlayer,
+      history,
     } = this.props
 
     let {
@@ -72,20 +74,22 @@ class Players extends PureComponent {
 
     return (
       <div>
-        {false && <Player />}
         <ReactDataGrid
           enableCellSelect={true}
           columns={columns}
           toolbar={
             <Toolbar>
+            {false &&
             <Button onClick={() => {
               createPlayer()
             }}>Create Random Player</Button>
+            }
+            <Button onClick={() => history.push('/players/create')}>Create Player</Button>
             <button
               className='btn'
               style={(selectedPlayerRows.length > 0 ? {
                 backgroundColor: 'red',
-                coor: 'white',
+                color: 'white',
               }:{})}
               disabled={(selectedPlayerRows.length < 1)}
               onClick={() => {this.state.selectedPlayerRows.map(row => {
@@ -107,11 +111,11 @@ class Players extends PureComponent {
             }
           }}
           onGridRowsUpdated={data => {
-            //updateTeam(data.fromRowData.get('uuid'), data.cellKey, data.updated[data.cellKey])
+            updatePlayer(data.fromRowData.get('uuid'), data.cellKey, data.updated[data.cellKey])
           }}/>
       </div>
     )
   }
 }
 //<Button raised onClick={() => createPlayer(player())}>Create Players</Button>
-export default Players
+export default withRouter(Players)

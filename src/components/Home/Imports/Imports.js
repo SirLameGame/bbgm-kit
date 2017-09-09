@@ -29,13 +29,12 @@ const Import = ({
         reader.onload = data => {
           let league = JSON.parse(reader.result)
 
-
           clearTeams()
           clearPlayers()
           clearAttributes()
 
-          league.teams.map(team => createTeam(team))
-          league.players.map(team => createPlayer(team))
+          league.teams.forEach(team => createTeam(team))
+          league.players.forEach(team => createPlayer(team))
 
           updateAttribute('startingSeason', league.startingSeason)
           league.gameAttributes.map(attribute => {

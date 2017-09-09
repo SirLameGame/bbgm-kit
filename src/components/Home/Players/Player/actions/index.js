@@ -1,6 +1,10 @@
 import * as types from '../constants';
+import uuid from 'uuid/v4'
 
-// export const createPlayer = (player: Object) => ({
-//   type: types.CREATE_PLAYER,
-//   payload: player
-// });
+export const createNewPlayer = (player: Object) => ({
+  type: types.CREATE_NEW_PLAYER,
+  payload: {
+    player: player,
+    uuid: uuid()
+  }
+});

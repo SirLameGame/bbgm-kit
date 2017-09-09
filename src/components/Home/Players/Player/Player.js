@@ -3,6 +3,8 @@ import React, { PureComponent } from 'react'
 // import { player } from './reducers'
 // import { Toolbar } from 'react-data-grid-addons'
 // import ReactDataGrid from 'react-data-grid'
+import { withRouter } from 'react-router-dom'
+import { TextField, Button } from 'material-ui'
 import './assets/styles/Player.css'
 
 // const columns = [
@@ -15,28 +17,48 @@ import './assets/styles/Player.css'
 // ]
 
 class Player extends PureComponent {
-
-  constructor() {
-    super()
-
-    this.state = {
-    }
-  }
-
   render() {
 
-    // let {
-    // } = this.props
+    let {
+      history,
+      updatePlayer,
+    } = this.props
 
-    // let {
-    // } = this.state
+    let playerInputs = [
+      { input: 'Name', type: 'text', helper: 'Name of the player', placeholder: 'Sir LameGame',
+        label: 'Players Name'},
+      { input: 'College', type: 'text', helper: 'Players College', placeholder: 'Georgetown',
+        label: 'College'},
+    ]
+
+    let inputs = playerInputs.map((input, idx) => (
+      <div key={input.input} className='playerInput'>
+          <TextField
+            value={input.input}
+            label={ input.label }
+            onChange={event => {}}
+            type={input.type}
+            helperText={input.helper}
+            placeholder={input.placeholder}
+            min={input.min}
+            className={input.input}
+            fullWidth/>
+      </div>
+    ))
 
     return (
-      <div className='edit-player'>
-        testing
+      <div className='edit-player-container'>
+        <div className='create-player-actions'>
+          <Button onClick={() => history.push('/players')}>Cancel</Button>
+        </div>
+        <div className='edit-player'>
+          <div className='edit-player-inputs'>
+            { inputs }
+          </div>
+        </div>
       </div>
     )
   }
 }
-//<Button raised onClick={() => createPlayer(player())}>Create Players</Button>
-export default Player
+
+export default withRouter(Player)

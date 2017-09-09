@@ -1,11 +1,32 @@
+.edit-player-container {
+
+  padding: 2rem;
+}
+
 .edit-player {
-  position: fixed;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  display: flex;
+  flex-flow: column nowrap;
   height: 100%;
   width: 100%;
-  z-index: 99999;
-  background-color: rgba(255, 255, 255, .95)
+}
+
+.edit-player-inputs {
+  columns: 2;
+}
+
+.create-player-actions {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+.close-create-player:before {
+  content: 'x';
+  color: #fff;
+  font-weight: 300;
+  font-family: Arial, sans-serif;
+}
+
+.playerInput {
+
 }

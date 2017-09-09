@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   createPlayer: playerActions.createPlayer,
   deletePlayer: playerActions.deletePlayer,
+  updatePlayer: playerActions.updatePlayer,
 }, dispatch)
 
 

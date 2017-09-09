@@ -1,10 +1,13 @@
 import * as types from '../constants';
+import uuid from 'uuid/v4'
 
-export const createTeam = (team: Object) => ({
+export const createTeam = (newTeam: Object) => ({
   type: types.CREATE_TEAM,
-  payload: team
+  payload: {
+    team: newTeam,
+    uuid: uuid(),
+  }
 });
-
 export const deleteTeam = (teamUUID: String) => ({
   type: types.DELETE_TEAM,
   payload: teamUUID

@@ -129,7 +129,7 @@ class Teams extends PureComponent {
 
 
 Teams.PropTypes = {
-  team: PropTypes.object,
+  teams: PropTypes.object,
   createTeam: PropTypes.func,
   createTeams: PropTypes.func,
   updateTeam: PropTypes.func,

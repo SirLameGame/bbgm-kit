@@ -23,15 +23,14 @@ export const team = new Record({
 const teamsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.CREATE_TEAM:
-      action.payload = new team(action.payload)
-      action.payload.set('pop', parseFloat(action.payload['pop']))
-      action.payload.set('tid', parseInt(action.payload['tid'], 10))
-      action.payload.set('cid', parseInt(action.payload['cid'], 10))
-      action.payload.set('did', parseInt(action.payload['did'], 10))
-      action.payload = new team(action.payload)
-      return state.push(action.payload.set('uuid', uuid()))
+      action.payload.team['pop'] = parseFloat(action.payload.team['pop'])
+      action.payload.team['tid'] = parseInt(action.payload.team['tid'], 10)
+      action.payload.team['cid'] = parseInt(action.payload.team['cid'], 10)
+      action.payload.team['did'] = parseInt(action.payload.team['did'], 10)
+      action.payload.team.uuid = action.payload.uuid
+      return state.push(new team(action.payload.team))
     case types.DELETE_TEAM:
-      return state.filter(obj => {return obj.uuid !== action.payload})
+      return state.filter(obj => obj.uuid !== action.payload)
     case types.UPDATE_TEAM:
       return state.map(team => (
         team.get('uuid') === action.payload.teamUUID ?

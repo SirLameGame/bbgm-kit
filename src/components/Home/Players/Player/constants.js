@@ -1,0 +1,1 @@
+export const CREATE_NEW_PLAYER = 'CREATE_NEW_PLAYER'
