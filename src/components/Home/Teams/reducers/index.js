@@ -39,7 +39,9 @@ const teamsReducer = (state = initialState, action) => {
             ? team.set(action.payload.key, parseInt(action.payload.value, 10))
             : ['pop'].includes(action.payload.key)
               ? team.set(action.payload.key, parseFloat(action.payload.value))
-              : null
+              : ['strategy', 'imgURL', 'region', 'abbrev'].includes(action.payload.key)
+                ? team.set(action.payload.key, action.payload.value)
+                : console.log('this should never run')
         : team))
     case types.CLEAR_TEAMS:
       return initialState

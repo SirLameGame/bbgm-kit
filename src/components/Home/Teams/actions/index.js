@@ -10,7 +10,7 @@ export const createTeam = (newTeam: Object) => ({
 });
 export const deleteTeam = (teamUUID: String) => ({
   type: types.DELETE_TEAM,
-  payload: teamUUID
+  payload: teamUUID,
 });
 
 export const clearTeams = () => ({
@@ -22,11 +22,11 @@ export const updateTeam = (teamUUID: STRING, key: String, value) => ({
   payload: {
     teamUUID: teamUUID,
     key: key,
-    value:value
+    value: value,
   }
 });
 
 export const createRandoTeams = (team: Object) => ({
   type: types.CREATE_RANDOM_TEAMS,
-  payload: team
+  payload: team,
 });
