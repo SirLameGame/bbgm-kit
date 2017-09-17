@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as teamFormActions from '../actions'
-import { Input, Button, FormGroup, Paper } from 'material-ui'
+import { Input, FlatButton, FormGroup, Paper } from 'material-ui'
 import './assets/styles/TeamForm.css'
 
 class TeamForm extends Component {
@@ -129,10 +129,10 @@ class TeamForm extends Component {
               </FormGroup>
             </div>
           }
-            <Button raised color='primary' onClick={() => {this.setState({open: !this.state.open})}}>
+            <FlatButton raised color='primary' onClick={() => {this.setState({open: !this.state.open})}}>
               {this.state.open ? 'Save' : 'Edit'}
-            </Button>
-            <Button raised color='accent' onClick={() => {this.props.deleteTeam(uuid)}}>X</Button>
+            </FlatButton>
+            <FlatButton raised color='accent' onClick={() => {this.props.deleteTeam(uuid)}}>X</FlatButton>
       </Paper>
     )
   }

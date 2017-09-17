@@ -8,13 +8,13 @@ import { sample } from 'lodash'
 const initialState = new List()
 
 export const team = new Record({
-  tid: '',
-  cid: '',
-  did: '',
+  tid: 0,
+  cid: 0,
+  did: 0,
   name: '',
   region: '',
   abbrev: '',
-  pop: '',
+  pop: 0,
   strategy: '',
   uuid: '',
   imgURL: ''
@@ -23,12 +23,13 @@ export const team = new Record({
 const teamsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.CREATE_TEAM:
-      action.payload.team['pop'] = parseFloat(action.payload.team['pop'])
-      action.payload.team['tid'] = parseInt(action.payload.team['tid'], 10)
-      action.payload.team['cid'] = parseInt(action.payload.team['cid'], 10)
-      action.payload.team['did'] = parseInt(action.payload.team['did'], 10)
-      action.payload.team.uuid = action.payload.uuid
-      return state.push(new team(action.payload.team))
+      let newTeam = Object.assign({}, team().toJS(), action.payload.team,)
+      newTeam['pop'] = parseFloat(newTeam['pop'])
+      newTeam['tid'] = parseInt(newTeam['tid'], 10)
+      newTeam['cid'] = parseInt(newTeam['cid'], 10)
+      newTeam['did'] = parseInt(newTeam['did'], 10)
+      newTeam['uuid'] = action.payload.uuid
+      return state.push(new team(newTeam))
     case types.DELETE_TEAM:
       return state.filter(obj => obj.uuid !== action.payload)
     case types.UPDATE_TEAM:

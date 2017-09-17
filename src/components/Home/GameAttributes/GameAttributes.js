@@ -96,11 +96,12 @@ class GameAttributes extends PureComponent {
       <div key={attrib.attrib} className='attributeInput'>
           <TextField
             value={gameAttributes.get(attrib.attrib)}
-            label={ attrib.label }
+            floatingLabelText={ attrib.label }
+            id={`${attrib.attrib}-input`}
+            errorText={!gameAttributes.get(attrib.attrib) ? 'Enter a value' : ''}
             onChange={event => updateAttribute(attrib.attrib, event.target.value)}
             type='number'
-            helperText={attrib.helper}
-            placeholder={attrib.placeholder}
+            hintText={`${attrib.helper} ex. ${attrib.placeholder}`}
             min={attrib.min}
             className={attrib.attrib}
             fullWidth/>
@@ -120,7 +121,7 @@ class GameAttributes extends PureComponent {
           toolbar={
             <Toolbar
             addRow={true}
-            addRowButtonText="Create Conference"
+            addRowFlatButtonText="Create Conference"
             onAddRow={() => createConference()}>
             <button
               className='btn'
@@ -153,7 +154,7 @@ class GameAttributes extends PureComponent {
           toolbar={
             <Toolbar
             addRow={true}
-            addRowButtonText="Create Division"
+            addRowFlatButtonText="Create Division"
             onAddRow={() => createDivision()}>
             <button
               className='btn'

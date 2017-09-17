@@ -1,7 +1,6 @@
 import React from 'react'
 import Imports from '../Imports'
-import FileSaver from 'file-saver'
-import { Button } from 'react-bootstrap'
+//import { FlatButton } from 'material-ui'
 
 const Export = ({leagueExport}) => (
   <div>
@@ -11,11 +10,6 @@ const Export = ({leagueExport}) => (
       className='export-textarea'
       readOnly
     />
-    <Button
-      onClick={() => {
-          FileSaver.saveAs(new File([JSON.stringify(leagueExport, null, 0)],
-            "roster.txt", {type: "text/plain;charset=utf-8"}));
-        }}>Download</Button>
   </div>
 )
 

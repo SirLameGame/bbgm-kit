@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'react-bootstrap'
+import { FlatButton } from 'material-ui'
 import { Toolbar } from 'react-data-grid-addons'
 import ReactDataGrid from 'react-data-grid'
 import './assets/styles/Teams.css'
@@ -92,18 +92,18 @@ class Teams extends PureComponent {
           toolbar={
             <Toolbar
             addRow={true}
-            addRowButtonText="Create Team"
+            addRowFlatButtonText="Create Team"
             onAddRow={() => createTeam()}>
-            <Button className onClick={() => {
+            <FlatButton onClick={() => {
                 clearTeams()
                 createRandoTeams()
-              }}>Create Random Teams</Button>
-            <button
+              }}>Create Random Teams</FlatButton>
+            <FlatButton
               className='btn'
               onClick={() => {this.state.selectedTeamRows.map(row => {
                 return deleteTeam(teams.get(row).uuid)
               }); this.setState({selectedTeamRows: []})}}
-              type='button'>Delete</button>
+              type='button'>Delete</FlatButton>
           </Toolbar>
           }
           rowGetter={data => teams.get(data)}

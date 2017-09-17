@@ -22,7 +22,7 @@ export const team = {
 const teams = [
 ]
 
-const player = {
+export const player = {
   tid: 0,
   name: '',
   pos: '',
@@ -44,7 +44,7 @@ const player = {
     originalTid: 0,
     year: 0
   },
-  college: 0,
+  college: '',
   ratings: [
     {
       hgt: 0,

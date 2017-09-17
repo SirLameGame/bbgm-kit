@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Button from 'material-ui/Button'
+import { FlatButton } from 'material-ui'
 //import { player } from './reducers'
 import { Toolbar } from 'react-data-grid-addons'
 import { withRouter } from "react-router-dom";
@@ -80,12 +80,12 @@ class Players extends PureComponent {
           toolbar={
             <Toolbar>
             {false &&
-            <Button onClick={() => {
+            <FlatButton onClick={() => {
               createPlayer()
-            }}>Create Random Player</Button>
+            }}>Create Random Player</FlatButton>
             }
-            <Button onClick={() => history.push('/players/create')}>Create Player</Button>
-            <button
+            <FlatButton onClick={() => history.push('/players/create')}>Create Player</FlatButton>
+            <FlatButton
               className='btn'
               style={(selectedPlayerRows.length > 0 ? {
                 backgroundColor: 'red',
@@ -95,7 +95,7 @@ class Players extends PureComponent {
               onClick={() => {this.state.selectedPlayerRows.map(row => {
                 return deletePlayer(players.get(row).uuid)
               }); this.setState({selectedPlayerRows: []})}}
-              type='button'>Delete</button>
+              type='button'>Delete</FlatButton>
           </Toolbar>
           }
           rowGetter={data => players.get(data)}
@@ -117,5 +117,5 @@ class Players extends PureComponent {
     )
   }
 }
-//<Button raised onClick={() => createPlayer(player())}>Create Players</Button>
+//<FlatButton raised onClick={() => createPlayer(player())}>Create Players</FlatButton>
 export default withRouter(Players)

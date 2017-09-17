@@ -11,7 +11,9 @@
 }
 
 .edit-player-inputs {
-  columns: 2;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
 
 .create-player-actions {
@@ -28,5 +30,5 @@
 }
 
 .playerInput {
-
+  margin-bottom: 3rem !important;
 }

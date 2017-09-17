@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
-// import Button from 'material-ui/Button'
-// import { player } from './reducers'
+// import FlatButton from 'material-ui/FlatButton'
+import { player } from '../../../../data'
 // import { Toolbar } from 'react-data-grid-addons'
 // import ReactDataGrid from 'react-data-grid'
 import { withRouter } from 'react-router-dom'
-import { TextField, Button } from 'material-ui'
+import { TextField, SelectField, FlatButton, MenuItem } from 'material-ui'
 import './assets/styles/Player.css'
 
 // const columns = [
@@ -17,6 +17,15 @@ import './assets/styles/Player.css'
 // ]
 
 class Player extends PureComponent {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      ...player
+    }
+  }
+
   render() {
 
     let {
@@ -25,21 +34,24 @@ class Player extends PureComponent {
     } = this.props
 
     let playerInputs = [
-      { input: 'Name', type: 'text', helper: 'Name of the player', placeholder: 'Sir LameGame',
+      { input: 'name', type: 'text', helper: 'Name of the player', placeholder: 'Sir LameGame',
         label: 'Players Name'},
-      { input: 'College', type: 'text', helper: 'Players College', placeholder: 'Georgetown',
+      { input: 'college', type: 'text', helper: 'Players College', placeholder: 'Georgetown',
         label: 'College'},
+      { input: 'tid', type: 'number', helper: 'ID of the team. -1 for no team', placeholder: '-1',
+        label: 'Team ID'},
+      { input: 'hgt', type: 'number', helper: 'Height of the player', placeholder: '55',
+        label: 'Height'},
     ]
 
     let inputs = playerInputs.map((input, idx) => (
       <div key={input.input} className='playerInput'>
           <TextField
-            value={input.input}
-            label={ input.label }
-            onChange={event => {}}
+            value={this.state[input.input]}
+            floatingLabelText={ input.label }
+            onChange={e => this.setState({[input.input]: e.target.value})}
             type={input.type}
-            helperText={input.helper}
-            placeholder={input.placeholder}
+            hintText={`${input.helper}`}
             min={input.min}
             className={input.input}
             fullWidth/>
@@ -49,11 +61,27 @@ class Player extends PureComponent {
     return (
       <div className='edit-player-container'>
         <div className='create-player-actions'>
-          <Button onClick={() => history.push('/players')}>Cancel</Button>
+          <FlatButton onClick={() => history.push('/players')}>Cancel</FlatButton>
         </div>
         <div className='edit-player'>
           <div className='edit-player-inputs'>
             { inputs }
+            <div className='playerInput'>
+              <SelectField
+                value={this.state.pos}
+                floatingLabelText='Position'
+                onChange={(e, i, v) => {this.setState({pos: v})}}>
+                  <MenuItem value={'PG'} primaryText='PG' />
+                  <MenuItem value={'SG'} primaryText='SG' />
+                  <MenuItem value={'SF'} primaryText='SF' />
+                  <MenuItem value={'PF'} primaryText='PF' />
+                  <MenuItem value={'C'} primaryText='C' />
+                  <MenuItem value={'G'} primaryText='G' />
+                  <MenuItem value={'GF'} primaryText='GF' />
+                  <MenuItem value={'F'} primaryText='F' />
+                  <MenuItem value={'FC'} primaryText='FC' />
+              </SelectField>
+            </div>
           </div>
         </div>
       </div>
