@@ -21,15 +21,23 @@ class Player extends PureComponent {
   constructor(props) {
     super(props)
 
+    const query = new URLSearchParams(props.location.search)
+
+    let uuidPlayer = props.players.filter(player => player.uuid === query.get('uuid')).toJS()[0]
+
+    let thisPlayer = uuidPlayer
+      ? uuidPlayer
+      : player
+
     this.state = {
-      ...player
+      ...thisPlayer
     }
   }
 
   render() {
 
     let {
-      history,
+      createPlayer,
       updatePlayer,
     } = this.props
 
@@ -42,6 +50,19 @@ class Player extends PureComponent {
         label: 'Team ID'},
       { input: 'hgt', type: 'number', helper: 'Height of the player', placeholder: '55',
         label: 'Height'},
+    ]
+
+    let draft = [
+      { input: 'round', type: 'number', helper: 'Round Drafted', placeholder: '1',
+        label: 'Round Drafted'},
+      { input: 'pick', type: 'number', helper: 'Pick Number', placeholder: '1',
+        label: 'Pick Number'},
+      { input: 'tid', type: 'number', helper: 'Team Drafted', placeholder: '0',
+        label: 'Team Drafted'},
+      { input: 'originalTid', type: 'number', helper: 'Orignal Team ID', placeholder: '0',
+        label: 'Players Name'},
+      { input: 'year', type: 'number', helper: 'Draft Year', placeholder: '2018',
+        label: 'Draft'},
     ]
 
     let inputs = playerInputs.map((input, idx) => (
@@ -58,10 +79,30 @@ class Player extends PureComponent {
       </div>
     ))
 
+    let draftInputs = draft.map((input, idx) => (
+      <div key={input.input} className='playerInput'>
+          <TextField
+            value={this.state.draft[input.input]}
+            floatingLabelText={ input.label }
+            onChange={e => this.setState({draft: {[input.input]: e.target.value}})}
+            type={input.type}
+            hintText={`${input.helper}`}
+            min={input.min}
+            className={input.input}
+            fullWidth/>
+      </div>
+    ))
+
     return (
       <div className='edit-player-container'>
         <div className='create-player-actions'>
-          <FlatButton onClick={() => history.push('/players')}>Cancel</FlatButton>
+          <FlatButton onClick={() => {
+            this.state.uuid
+            ? Object.keys(this.state).forEach(attrib => {
+              if (attrib !== 'uuid') { updatePlayer(this.state.uuid, attrib, this.state[attrib])}
+            })
+            : createPlayer(this.state)
+          }}>{ this.state.uuid ? 'Save' : 'Create'}</FlatButton>
         </div>
         <div className='edit-player'>
           <div className='edit-player-inputs'>
@@ -82,6 +123,47 @@ class Player extends PureComponent {
                   <MenuItem value={'FC'} primaryText='FC' />
               </SelectField>
             </div>
+            <div className='playerInput'>
+              <TextField
+                value={this.state.born.year}
+                floatingLabelText='Birh Year'
+                onChange={e => this.setState({born: {...this.state.born, year: e.target.value}})}
+                type='number'
+                hintText='Year of Birth'
+                min={0}
+                fullWidth/>
+            </div>
+            <div className='playerInput'>
+              <TextField
+                value={this.state.born.loc}
+                floatingLabelText='Birh Location'
+                onChange={e => this.setState({born: {...this.state.born, loc: e.target.value}})}
+                type='text'
+                hintText='Location of Birth'
+                min={0}
+                fullWidth/>
+            </div>
+            <div className='playerInput'>
+              <TextField
+                value={this.state.contract.amount}
+                floatingLabelText='Contract Amount'
+                onChange={e => this.setState({contract: {...this.state.contract, amount: e.target.value}})}
+                type='number'
+                hintText='Contract Amount'
+                min={0}
+                fullWidth/>
+            </div>
+            <div className='playerInput'>
+              <TextField
+                value={this.state.contract.exp}
+                floatingLabelText='Contract Expiration'
+                onChange={e => this.setState({contract: {...this.state.contract, exp: e.target.value}})}
+                type='number'
+                hintText='Contract Expiration'
+                min={0}
+                fullWidth/>
+            </div>
+            {draftInputs}
           </div>
         </div>
       </div>

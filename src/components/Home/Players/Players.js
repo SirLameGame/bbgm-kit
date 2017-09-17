@@ -11,6 +11,13 @@ const columns = [
     key: 'name',
     editable: true,
     resizable: true,
+    events: {
+      onDoubleClick: (one, two, three) => {
+        one.persist()
+        console.log(one)
+        console.log(two)
+      }
+    }
   },
   {
     name: 'Team ID',
@@ -75,6 +82,7 @@ class Players extends PureComponent {
     return (
       <div>
         <ReactDataGrid
+          ref={ node => this.grid = node }
           enableCellSelect={true}
           columns={columns}
           toolbar={
@@ -84,7 +92,7 @@ class Players extends PureComponent {
               createPlayer()
             }}>Create Random Player</FlatButton>
             }
-            <FlatButton onClick={() => history.push('/players/create')}>Create Player</FlatButton>
+            <FlatButton onClick={() => history.push('/players/edit')}>Create Player</FlatButton>
             <FlatButton
               className='btn'
               style={(selectedPlayerRows.length > 0 ? {
@@ -101,6 +109,7 @@ class Players extends PureComponent {
           rowGetter={data => players.get(data)}
           rowsCount={players.size}
           minHeight={600}
+          onRowClick={(idx, data) => history.push(`/players/edit?uuid=${data.get('uuid')}`)}
           rowSelection={{
             showCheckbox: true,
             enableShiftSelect: true,

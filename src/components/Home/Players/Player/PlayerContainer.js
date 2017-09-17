@@ -5,10 +5,12 @@ import * as playerActions from '../actions'
 //import * as playerActions from './actions'
 
 const mapStateToProps = state => ({
+  players: state.players
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  updatePlayer: playerActions.updatePlayer
+  createPlayer: playerActions.createPlayer,
+  updatePlayer: playerActions.updatePlayer,
 }, dispatch)
 
 

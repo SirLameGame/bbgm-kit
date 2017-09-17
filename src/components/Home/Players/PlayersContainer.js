@@ -1,6 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Players from './Players';
+import { withRouter } from 'react-router-dom'
 import * as playerActions from './actions'
 
 const mapStateToProps = state => ({
@@ -14,4 +15,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Players);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Players));

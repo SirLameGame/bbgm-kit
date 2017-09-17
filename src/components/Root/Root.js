@@ -25,7 +25,7 @@ const Root = () => (
         <Route exact path="/attributes" component={GameAttributes}/>
         <Route exact path="/teams" component={Teams}/>
         <Route exact path="/players" component={Players}/>
-        <Route exact path="/players/create" component={Player}/>
+        <Route exact path="/players/edit" component={Player}/>
         <Route exact path="/transfer" component={Export}/>
         <Route path="*" component={NotFound}/>
       </Switch>
